@@ -81,16 +81,16 @@ export default function AIAgentArchitecture() {
       id: 'memory',
       icon: Database,
       label: 'Memory',
-      x: 44,
-      y: 72,
+      x: 42,
+      y: 75,
       type: 'service'
     },
     {
       id: 'vector',
       icon: Database,
       label: 'Vector Store',
-      x: 56,
-      y: 72,
+      x: 58,
+      y: 75,
       type: 'service'
     },
     {
@@ -297,7 +297,7 @@ export default function AIAgentArchitecture() {
               <node.icon className="w-5 h-5" strokeWidth={2} />
             </div>
           </div>
-          <div className={`text-[10px] sm:text-xs font-medium transition-colors ${
+          <div className={`text-[10px] sm:text-xs font-medium transition-colors text-center px-1 leading-tight ${
             status === 'active' ? 'text-cyan-300' : status === 'completed' ? 'text-emerald-300' : 'text-slate-400'
           }`}>
             {node.label}
@@ -331,7 +331,7 @@ export default function AIAgentArchitecture() {
           </div>
         </div>
       )}
-      <div className="relative w-full h-[380px] sm:h-[420px] md:h-[460px] p-6 sm:p-8">
+      <div className="relative w-full h-[420px] sm:h-[460px] md:h-[500px] p-6 sm:p-8">
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{
             backgroundImage: 'radial-gradient(circle at center, rgba(148, 163, 184, 0.15) 1px, transparent 1px)',
