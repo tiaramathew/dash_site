@@ -238,7 +238,8 @@ export default function WorkflowAnimation() {
           </div>
         </div>
       )}
-      <div className="relative w-full h-[380px] sm:h-[420px] md:h-[460px] p-6 sm:p-8">
+      <div className="overflow-x-auto overflow-y-hidden">
+        <div className="relative w-full min-w-[800px] h-[380px] sm:h-[420px] md:h-[460px] p-6 sm:p-8">
         {/* Animated background grid */}
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute inset-0" style={{
@@ -432,6 +433,7 @@ export default function WorkflowAnimation() {
               </div>
             );
           })}
+        </div>
         </div>
       </div>
 

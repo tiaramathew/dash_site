@@ -331,7 +331,8 @@ export default function AIAgentArchitecture() {
           </div>
         </div>
       )}
-      <div className="relative w-full h-[420px] sm:h-[460px] md:h-[500px] p-6 sm:p-8">
+      <div className="overflow-x-auto overflow-y-hidden">
+        <div className="relative w-full min-w-[700px] h-[420px] sm:h-[460px] md:h-[500px] p-6 sm:p-8">
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{
             backgroundImage: 'radial-gradient(circle at center, rgba(148, 163, 184, 0.15) 1px, transparent 1px)',
@@ -345,6 +346,7 @@ export default function AIAgentArchitecture() {
           </svg>
 
           {nodes.map(node => renderNode(node))}
+        </div>
         </div>
       </div>
     </div>
