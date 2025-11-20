@@ -1,5 +1,5 @@
-# robots.txt for DashboardX
-# https://dashboardx.com/robots.txt
+# robots.txt for Agenticoslabs
+# https://agenticoslabs.com/robots.txt
 
 User-agent: *
 Allow: /
@@ -8,7 +8,7 @@ Disallow: /admin/
 Disallow: /*.json$
 
 # Sitemap location
-Sitemap: https://dashboardx.com/sitemap.xml
+Sitemap: https://agenticoslabs.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
