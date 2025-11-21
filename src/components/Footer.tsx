@@ -1,4 +1,4 @@
-import { Linkedin, Instagram } from 'lucide-react';
+import { Linkedin, Instagram, Twitter, Github } from 'lucide-react';
 
 interface FooterProps {
   onOpenPrivacy: () => void;
@@ -8,67 +8,104 @@ export default function Footer({ onOpenPrivacy }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-light-secondary to-light-primary dark:from-dark-secondary dark:to-dark-primary border-t-2 border-brand-slate-light/30 dark:border-brand-slate/30 transition-all duration-300 relative overflow-hidden">
-      <div className="absolute inset-0 bg-mesh-gradient-alt pointer-events-none opacity-20" aria-hidden="true" />
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-brand-teal-mid/10 to-brand-emerald-mid/8 rounded-full blur-3xl" style={{ animation: 'pulse-glow 15s ease-in-out infinite' }} aria-hidden="true" />
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16 relative z-10">
-        <div className="flex flex-col gap-6 sm:gap-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-5 sm:gap-6">
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-gradient hover:scale-110 transition-all duration-500 cursor-pointer">
-              DashboardX
-            </h3>
+    <footer className="bg-slate-950 border-t border-white/5 relative overflow-hidden pt-16 pb-8">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div className="absolute -bottom-[20%] -right-[10%] w-[500px] h-[500px] bg-violet-900/20 rounded-full blur-[100px] mix-blend-screen"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 brightness-100 contrast-150 mix-blend-overlay"></div>
+      </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6 md:gap-8">
-              <div className="flex flex-wrap justify-center gap-5 sm:gap-6 md:gap-8 text-sm md:text-base">
-                <a href="#services" className="text-text-light-secondary dark:text-text-dark-secondary font-bold hover:text-gradient transition-all duration-500 hover:scale-110 min-h-[44px] flex items-center">
-                  Services
-                </a>
-                <a href="#features" className="text-text-light-secondary dark:text-text-dark-secondary font-bold hover:text-gradient transition-all duration-500 hover:scale-110 min-h-[44px] flex items-center">
-                  Features
-                </a>
-                <a href="#ag-ui" className="text-text-light-secondary dark:text-text-dark-secondary font-bold hover:text-gradient transition-all duration-500 hover:scale-110 min-h-[44px] flex items-center">
-                  RAG Data Retrieval
-                </a>
-                <a href="#demo-form" className="text-text-light-secondary dark:text-text-dark-secondary font-bold hover:text-gradient transition-all duration-500 hover:scale-110 min-h-[44px] flex items-center">
-                  Contact
-                </a>
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                <span className="text-white font-bold text-lg">D</span>
               </div>
-
-              <div className="flex gap-2.5 sm:gap-3">
+              <span className="font-display text-2xl font-bold text-white tracking-tight">DashboardX</span>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+              Empowering businesses with next-generation AI agents. Automate, optimize, and scale your operations with intelligent solutions.
+            </p>
+            <div className="flex gap-4">
+              {[
+                { icon: Linkedin, href: "https://www.linkedin.com/company/agenticoslabs" },
+                { icon: Instagram, href: "https://www.instagram.com/agenticoslabs" },
+                { icon: Twitter, href: "#" },
+                { icon: Github, href: "#" }
+              ].map((social, index) => (
                 <a
-                  href="https://www.linkedin.com/company/agenticoslabs"
+                  key={index}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-xl bg-gradient-to-br from-light-primary/90 to-light-secondary/90 dark:from-dark-tertiary/90 dark:to-dark-secondary/90 backdrop-blur-md border-2 border-brand-slate-light/30 dark:border-brand-slate/30 flex items-center justify-center hover:border-brand-teal-mid hover:scale-110 hover:bg-gradient-to-br hover:from-brand-teal-mid/20 hover:to-brand-emerald-mid/20 transition-all duration-500 group shadow-elevation-1 hover:shadow-glow-emerald hover:rotate-6"
-                  aria-label="Visit DashboardX on LinkedIn"
+                  className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                  aria-label="Social link"
                 >
-                  <Linkedin className="w-5 h-5 text-brand-blue-mid group-hover:text-brand-teal-mid group-hover:scale-110 transition-all duration-500" aria-hidden="true" />
+                  <social.icon className="w-4 h-4" />
                 </a>
-                <a
-                  href="https://www.instagram.com/agenticoslabs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 min-w-[48px] min-h-[48px] rounded-xl bg-gradient-to-br from-light-primary/90 to-light-secondary/90 dark:from-dark-tertiary/90 dark:to-dark-secondary/90 backdrop-blur-md border-2 border-brand-slate-light/30 dark:border-brand-slate/30 flex items-center justify-center hover:border-brand-teal-mid hover:scale-110 hover:bg-gradient-to-br hover:from-brand-teal-mid/20 hover:to-brand-emerald-mid/20 transition-all duration-500 group shadow-elevation-1 hover:shadow-glow-emerald hover:rotate-6"
-                  aria-label="Visit DashboardX on Instagram"
-                >
-                  <Instagram className="w-5 h-5 text-brand-teal-mid group-hover:text-brand-emerald-mid group-hover:scale-110 transition-all duration-500" aria-hidden="true" />
-                </a>
-              </div>
+              ))}
             </div>
           </div>
 
-          <div className="pt-6 sm:pt-7 md:pt-8 border-t-2 border-brand-slate-light/30 dark:border-brand-slate/30 flex flex-col md:flex-row justify-between items-center gap-5 sm:gap-6">
-            <p className="text-text-light-secondary dark:text-text-dark-secondary text-sm md:text-base text-center md:text-left font-medium">
-              &copy; {currentYear} DashboardX. All rights reserved.
-            </p>
-            <div className="flex flex-wrap justify-center gap-5 sm:gap-6 md:gap-8 text-sm md:text-base">
-              <button
-                onClick={onOpenPrivacy}
-                className="text-text-light-secondary dark:text-text-dark-secondary font-bold hover:text-gradient transition-all duration-500 hover:scale-110 min-h-[44px] flex items-center"
-              >
-                Privacy Policy
-              </button>
-            </div>
+          {/* Links Columns */}
+          <div>
+            <h4 className="font-bold text-white mb-6">Product</h4>
+            <ul className="space-y-4">
+              {['Features', 'Integrations', 'Pricing', 'Changelog'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-white mb-6">Company</h4>
+            <ul className="space-y-4">
+              {['About Us', 'Careers', 'Blog', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-white mb-6">Legal</h4>
+            <ul className="space-y-4">
+              <li>
+                <button onClick={onOpenPrivacy} className="text-sm text-slate-400 hover:text-indigo-400 transition-colors">
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors">
+                  Cookie Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-500 text-sm">
+            &copy; {currentYear} DashboardX. All rights reserved.
+          </p>
+          <div className="flex items-center gap-2 text-sm text-slate-500">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            All systems operational
           </div>
         </div>
       </div>

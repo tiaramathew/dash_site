@@ -19,7 +19,7 @@ export default function AnimatedVisual() {
 
     isAnimatingRef.current = true;
     setTypedText('');
-    setShowResults(false);
+    // setShowResults(false); // Keep results visible during typing loop
 
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
@@ -59,7 +59,7 @@ export default function AnimatedVisual() {
   }, [startAnimation, clearAllTimers]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-gradient-to-br from-slate-950 to-indigo-950 border border-indigo-900/50 rounded-xl sm:rounded-2xl relative shadow-2xl overflow-hidden">
+    <div className="w-full max-w-5xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-gradient-to-br from-slate-950 to-indigo-950 border border-indigo-900/50 rounded-xl sm:rounded-2xl relative shadow-2xl overflow-hidden min-h-[500px] flex flex-col">
       <div className="w-[95%] sm:w-[93%] mx-auto relative z-10 py-3 sm:py-4 md:py-6">
         {/* Input Bar */}
         <div className="bg-slate-900/80 backdrop-blur-md text-slate-100 px-3 sm:px-6 py-3 sm:py-4 rounded-xl text-left border border-indigo-500/30 shadow-lg font-mono text-xs sm:text-sm flex items-center gap-3">
@@ -95,10 +95,11 @@ export default function AnimatedVisual() {
               <div className="flex-1 flex items-end justify-between gap-2 px-2">
                 {[45, 70, 55, 85, 65, 95, 75].map((height, i) => (
                   <div key={i} className="flex-1 flex flex-col justify-end group">
-                    <div className="w-full bg-gradient-to-t from-indigo-600 to-violet-500 rounded-t-sm transition-all duration-300 group-hover:opacity-100 opacity-80"
+                    <div className="w-full bg-gradient-to-t from-indigo-600 to-violet-500 rounded-t-sm transition-all duration-300 group-hover:opacity-100 opacity-80 origin-bottom"
                       style={{
                         height: `${height}%`,
-                        animation: `grow-bar 0.6s ease-out ${0.1 + i * 0.1}s both`
+                        transform: 'scaleY(0)',
+                        animation: `grow-bar 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${0.2 + i * 0.1}s forwards`
                       }}
                     ></div>
                   </div>
@@ -124,7 +125,7 @@ export default function AnimatedVisual() {
                   <span>12% vs last month</span>
                 </div>
                 <div className="w-full bg-slate-700/50 h-1.5 rounded-full overflow-hidden">
-                  <div className="h-full bg-violet-500 rounded-full w-[75%] animate-slide-right"></div>
+                  <div className="h-full bg-violet-500 rounded-full w-[75%] origin-left" style={{ animation: 'slide-right 1s ease-out 0.5s both' }}></div>
                 </div>
               </div>
             </div>
@@ -235,7 +236,8 @@ export default function AnimatedVisual() {
           to { opacity: 1; transform: translateY(0); }
         }
         @keyframes grow-bar {
-          from { height: 0%; }
+          from { transform: scaleY(0); opacity: 0; }
+          to { transform: scaleY(1); opacity: 1; }
         }
         @keyframes spin-in {
           from { transform: rotate(-90deg); opacity: 0; }
@@ -248,14 +250,11 @@ export default function AnimatedVisual() {
           to { stroke-dashoffset: 60; }
         }
         @keyframes slide-right {
-          from { width: 0%; }
-          to { width: 75%; }
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
         }
         .animate-fade-in-up {
           animation: fade-in-up 0.6s ease-out;
-        }
-        .animate-slide-right {
-          animation: slide-right 1s ease-out 0.5s both;
         }
       `}</style>
     </div>
