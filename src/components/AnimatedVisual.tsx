@@ -5,9 +5,19 @@ export default function AnimatedVisual() {
   const [typedText, setTypedText] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const fullText = 'Generate Q4 marketing performance report...';
   const isAnimatingRef = useRef(false);
   const timersRef = useRef<NodeJS.Timeout[]>([]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const clearAllTimers = useCallback(() => {
     timersRef.current.forEach(timer => clearTimeout(timer));
@@ -59,7 +69,7 @@ export default function AnimatedVisual() {
   }, [startAnimation, clearAllTimers]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-gradient-to-br from-slate-950 to-indigo-950 border border-indigo-900/50 rounded-xl sm:rounded-2xl relative shadow-2xl overflow-hidden min-h-[500px] flex flex-col">
+    <div className={`w-full max-w-5xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-gradient-to-br from-slate-950 to-indigo-950 border border-indigo-900/50 rounded-xl sm:rounded-2xl relative shadow-2xl overflow-hidden flex flex-col transition-all duration-500 ${isMobile ? 'min-h-[600px]' : 'min-h-[500px]'}`}>
       <div className="w-[95%] sm:w-[93%] mx-auto relative z-10 py-3 sm:py-4 md:py-6">
         {/* Input Bar */}
         <div className="bg-slate-900/80 backdrop-blur-md text-slate-100 px-3 sm:px-6 py-3 sm:py-4 rounded-xl text-left border border-indigo-500/30 shadow-lg font-mono text-xs sm:text-sm flex items-center gap-3">
@@ -76,7 +86,7 @@ export default function AnimatedVisual() {
         </div>
 
         {showResults && (
-          <div key={animationKey} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6 pb-4">
+          <div key={animationKey} className={`grid gap-3 sm:gap-4 mt-4 sm:mt-6 pb-4 ${isMobile ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-4'}`}>
 
             {/* Card 1: Campaign ROI */}
             <div

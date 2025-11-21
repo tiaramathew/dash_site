@@ -21,9 +21,7 @@ export default function Footer({ onOpenPrivacy }: FooterProps) {
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                <span className="text-white font-bold text-lg">D</span>
-              </div>
+
               <span className="font-display text-2xl font-bold text-white tracking-tight">DashboardX</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">

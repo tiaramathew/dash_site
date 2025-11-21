@@ -28,9 +28,7 @@ export default function Header() {
             className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight hover:opacity-90 transition-opacity flex items-center gap-2"
             aria-label="DashboardX home"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-              <span className="text-white font-bold text-lg">D</span>
-            </div>
+
             DashboardX
           </a>
 
