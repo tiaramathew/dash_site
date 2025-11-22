@@ -8,7 +8,69 @@ import DemoForm from './components/DemoForm';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import ErrorBoundary from './components/ErrorBoundary';
-    </VideoProvider >
+import VideoFeatureSection from './components/VideoFeatureSection';
+import Admin from './pages/Admin';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { VideoProvider } from './contexts/VideoContext';
+import AGUISection from './components/AGUISection';
+import WorkflowSection from './components/WorkflowSection';
+import FAQ from './components/FAQ';
+
+function App() {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    // Simple check for admin route
+    if (window.location.pathname === '/admin') {
+      setIsAdmin(true);
+    }
+  }, []);
+
+  if (isAdmin) {
+    return (
+      <VideoProvider>
+        <ThemeProvider>
+          <Admin />
+        </ThemeProvider>
+      </VideoProvider>
+    );
+  }
+
+  return (
+    <VideoProvider>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <div className="min-h-screen bg-slate-950 transition-colors duration-300">
+            <Header />
+            <main>
+              <Hero />
+
+              {/* New Video Sections */}
+              <div id="services" className="space-y-0">
+                <VideoFeatureSection sectionId="chat-agents" alignment="left" />
+                <VideoFeatureSection sectionId="ai-avatars" alignment="right" />
+                <VideoFeatureSection sectionId="video-ads" alignment="left" />
+                <VideoFeatureSection sectionId="voice-agents" alignment="right" />
+              </div>
+
+              <HowItWorks />
+              <AGUISection />
+              <WorkflowSection />
+              <Features />
+              <UseCases />
+              <FAQ />
+              <DemoForm />
+            </main>
+            <Footer onOpenPrivacy={() => setIsPrivacyOpen(true)} />
+
+            {isPrivacyOpen && (
+              <PrivacyPolicy onClose={() => setIsPrivacyOpen(false)} />
+            )}
+          </div>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </VideoProvider>
   );
 }
 
