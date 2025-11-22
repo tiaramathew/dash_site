@@ -1,46 +1,74 @@
-import { ThemeProvider } from './contexts/ThemeContext';
-import ErrorBoundary from './components/ErrorBoundary';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import HowItWorks from './components/HowItWorks';
-import AGUISection from './components/AGUISection';
-import WorkflowSection from './components/WorkflowSection';
 import Features from './components/Features';
+import HowItWorks from './components/HowItWorks';
 import UseCases from './components/UseCases';
 import DemoForm from './components/DemoForm';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
-import { useState } from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
+import VideoFeatureSection from './components/VideoFeatureSection';
+import Admin from './pages/Admin';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { VideoProvider } from './contexts/VideoContext';
+import AGUISection from './components/AGUISection';
+import WorkflowSection from './components/WorkflowSection';
 
 function App() {
-  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    // Simple check for admin route
+    if (window.location.pathname === '/admin') {
+      setIsAdmin(true);
+    }
+  }, []);
+
+  if (isAdmin) {
+    return (
+      <VideoProvider>
+        <ThemeProvider>
+          <Admin />
+        </ThemeProvider>
+      </VideoProvider>
+    );
+  }
 
   return (
-    <ErrorBoundary>
+    <VideoProvider>
       <ThemeProvider>
-        <div className="min-h-screen bg-light-primary dark:bg-dark-primary text-text-light-primary dark:text-text-dark-primary transition-colors" itemScope itemType="https://schema.org/WebSite">
-          <meta itemProp="name" content="DashboardX - AI Agent Platform" />
-          <meta itemProp="description" content="Enterprise AI agent platform with voice, chat, avatars, and RAG-powered automation" />
-          <meta itemProp="url" content="https://agenticoslabs.com" />
+        <ErrorBoundary>
+          <div className="min-h-screen bg-slate-950 transition-colors duration-300">
+            <Header />
+            <main>
+              <Hero />
 
-          <Header />
-          <main id="main-content" role="main" itemScope itemType="https://schema.org/WebPageElement">
-            <Hero />
-            <HowItWorks />
-            <AGUISection />
-            <WorkflowSection />
-            <Features />
-            <UseCases />
-            <DemoForm />
-          </main>
-          <Footer onOpenPrivacy={() => setShowPrivacyModal(true)} />
+              {/* New Video Sections */}
+              <div id="services" className="space-y-0">
+                <VideoFeatureSection sectionId="chat-agents" alignment="left" />
+                <VideoFeatureSection sectionId="ai-avatars" alignment="right" />
+                <VideoFeatureSection sectionId="video-ads" alignment="left" />
+                <VideoFeatureSection sectionId="voice-agents" alignment="right" />
+              </div>
 
-          {showPrivacyModal && (
-            <PrivacyPolicy onClose={() => setShowPrivacyModal(false)} />
-          )}
-        </div>
+              <HowItWorks />
+              <AGUISection />
+              <WorkflowSection />
+              <Features />
+              <UseCases />
+              <DemoForm />
+            </main>
+            <Footer onOpenPrivacy={() => setIsPrivacyOpen(true)} />
+
+            {isPrivacyOpen && (
+              <PrivacyPolicy onClose={() => setIsPrivacyOpen(false)} />
+            )}
+          </div>
+        </ErrorBoundary>
       </ThemeProvider>
-    </ErrorBoundary>
+    </VideoProvider>
   );
 }
 

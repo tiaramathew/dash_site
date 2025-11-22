@@ -32,6 +32,9 @@ export default function Header() {
             DashboardX
           </a>
 
+          {/* Hidden Admin Link */}
+          <a href="/admin" className="opacity-0 hover:opacity-100 focus:opacity-100 w-4 h-4" aria-label="Admin Panel"></a>
+
           <ul className="hidden md:flex gap-8 items-center">
             {[
               { label: 'Services', href: '#services' },
