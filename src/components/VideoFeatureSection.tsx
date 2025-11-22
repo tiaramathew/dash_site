@@ -13,7 +13,7 @@ export default function VideoFeatureSection({ sectionId, alignment = 'left' }: V
     if (!data) return null;
 
     return (
-        <section className="py-24 relative overflow-hidden">
+        <section id={sectionId} className="py-24 relative overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
                 <div className={`flex flex-col ${alignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16`}>
 
