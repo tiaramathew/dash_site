@@ -25,6 +25,10 @@ export default function Header() {
         <nav className="flex justify-between items-center gap-3 md:gap-4" role="navigation" aria-label="Main navigation">
           <a
             href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight hover:opacity-90 transition-opacity flex items-center gap-2"
             aria-label="DashboardX home"
           >

@@ -36,11 +36,16 @@ export default function Footer({ onOpenPrivacy }: FooterProps) {
             <div className="text-center md:text-left">
               <h4 className="font-bold text-white mb-6">Our Services</h4>
               <ul className="space-y-4">
-                {['AI Video Ads', 'Realistic Avatars', 'Voice Synthesis', 'Video Editing', 'Podcast Production'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors relative group flex items-center justify-center md:justify-start gap-2">
+                {[
+                  { label: 'Chat Agents', href: '#chat-agents' },
+                  { label: 'AI Avatars', href: '#ai-avatars' },
+                  { label: 'Video Ads', href: '#video-ads' },
+                  { label: 'Voice Agents', href: '#voice-agents' }
+                ].map((item) => (
+                  <li key={item.label}>
+                    <a href={item.href} className="text-sm text-slate-400 hover:text-indigo-400 transition-colors relative group flex items-center justify-center md:justify-start gap-2">
                       <span className="w-1 h-1 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                      {item}
+                      {item.label}
                     </a>
                   </li>
                 ))}
