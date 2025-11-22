@@ -1,11 +1,11 @@
-import { Linkedin, Instagram, Twitter, Github } from 'lucide-react';
+import { Linkedin, Instagram } from 'lucide-react';
 
 interface FooterProps {
   onOpenPrivacy: () => void;
 }
 
 export default function Footer({ onOpenPrivacy }: FooterProps) {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2025;
 
   return (
     <footer className="bg-slate-950 border-t border-white/5 relative overflow-hidden pt-16 pb-8">
@@ -17,50 +17,78 @@ export default function Footer({ onOpenPrivacy }: FooterProps) {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             {/* Brand Column */}
             <div className="space-y-6 text-center md:text-left">
               <div className="flex items-center gap-2 justify-center md:justify-start">
-
-                <span className="font-display text-2xl font-bold text-white tracking-tight">DashboardX</span>
+                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">S</span>
+                </div>
+                <span className="font-display text-2xl font-bold text-white tracking-tight">Siwaht</span>
               </div>
-              <p className="text-slate-400 text-sm leading-relaxed mx-auto md:mx-0 max-w-xs">
-                Empowering businesses with next-generation AI agents. Automate, optimize, and scale your operations with intelligent solutions.
+              <p className="text-slate-400 text-sm leading-relaxed mx-auto md:mx-0">
+                Your Presence, Perfected
               </p>
             </div>
 
-            {/* Legal Column */}
+            {/* Services Column */}
             <div className="text-center md:text-left">
-              <h4 className="font-bold text-white mb-6">Legal</h4>
+              <h4 className="font-bold text-white mb-6">Our Services</h4>
               <ul className="space-y-4">
+                {['AI Video Ads', 'Realistic Avatars', 'Voice Synthesis', 'Video Editing', 'Podcast Production'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="text-sm text-slate-400 hover:text-indigo-400 transition-colors relative group flex items-center justify-center md:justify-start gap-2">
+                      <span className="w-1 h-1 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Quick Links Column */}
+            <div className="text-center md:text-left">
+              <h4 className="font-bold text-white mb-6">Quick Links</h4>
+              <ul className="space-y-4">
+                {[
+                  { label: 'Our Work', href: '#' },
+                  { label: 'Admin Portal', href: '#' },
+                  { label: 'Get Quote', href: '#' },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <a href={item.href} className="text-sm text-slate-400 hover:text-indigo-400 transition-colors relative group flex items-center justify-center md:justify-start gap-2">
+                      <span className="w-1 h-1 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
                 <li>
-                  <button onClick={onOpenPrivacy} className="text-sm text-slate-400 hover:text-indigo-400 transition-colors">
+                  <button onClick={onOpenPrivacy} className="text-sm text-slate-400 hover:text-indigo-400 transition-colors relative group flex items-center justify-center md:justify-start gap-2 w-full md:w-auto">
+                    <span className="w-1 h-1 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Privacy Policy
                   </button>
                 </li>
               </ul>
             </div>
 
-            {/* Social Column */}
+            {/* Follow Us Column */}
             <div className="text-center md:text-left">
-              <h4 className="font-bold text-white mb-6">Social</h4>
+              <h4 className="font-bold text-white mb-6">Follow Us</h4>
               <div className="flex gap-4 justify-center md:justify-start">
                 {[
-                  { icon: Linkedin, href: "https://www.linkedin.com/company/agenticoslabs" },
                   { icon: Instagram, href: "https://www.instagram.com/agenticoslabs" },
-                  { icon: Twitter, href: "#" },
-                  { icon: Github, href: "#" }
+                  { icon: Linkedin, href: "https://www.linkedin.com/company/agenticoslabs" }
                 ].map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                    className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
                     aria-label="Social link"
                   >
-                    <social.icon className="w-4 h-4" />
+                    <social.icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
@@ -68,14 +96,10 @@ export default function Footer({ onOpenPrivacy }: FooterProps) {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-white/5 text-center">
           <p className="text-slate-500 text-sm">
-            &copy; {currentYear} DashboardX. All rights reserved.
+            &copy; {currentYear} Siwaht. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-sm text-slate-500">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            All systems operational
-          </div>
         </div>
       </div>
     </footer>
