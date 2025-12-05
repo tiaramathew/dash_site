@@ -1,0 +1,25 @@
+# DashboardX - AI Agent Platform
+
+## Project Overview
+DashboardX is an enterprise AI agent platform that provides intelligent voice agents, chat bots, AI avatars, and RAG-powered workflow automation.
+
+## Core Features
+- **Voice Agents**: AI-powered voice agents for calls, scheduling, and surveys.
+- **Chat Agents**: Conversational bots for customer support and lead qualification.
+- **AI Avatars**: Lifelike digital representatives for video interactions.
+- **RAG Technology**: Retrieval-Augmented Generation for accurate, data-driven responses.
+- **Workflow Automation**: End-to-end process automation connecting various business tools.
+
+## Tech Stack
+- React (Vite)
+- TypeScript
+- Tailwind CSS
+- Framer Motion (assumed based on animations)
+
+## Navigation
+- / : Landing page
+- /admin : Admin dashboard (authenticated)
+- /login : Admin login
+
+## Contact
+- Website: https://agenticoslabs.com
