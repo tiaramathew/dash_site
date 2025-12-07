@@ -1,5 +1,6 @@
-import { Play, Check, Clock, Zap, Star } from 'lucide-react';
+import { Check, Clock, Zap, Star, Volume2, VolumeX } from 'lucide-react';
 import { useVideos } from '../contexts/VideoContext';
+import { useRef, useState } from 'react';
 
 interface VideoFeatureSectionProps {
     sectionId: string;
@@ -9,6 +10,15 @@ interface VideoFeatureSectionProps {
 export default function VideoFeatureSection({ sectionId, alignment = 'left' }: VideoFeatureSectionProps) {
     const { videos } = useVideos();
     const data = videos[sectionId];
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isMuted, setIsMuted] = useState(true);
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !isMuted;
+            setIsMuted(!isMuted);
+        }
+    };
 
     if (!data) return null;
 
@@ -23,8 +33,8 @@ export default function VideoFeatureSection({ sectionId, alignment = 'left' }: V
                             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                             <div className="relative bg-slate-900 rounded-2xl p-2 border border-white/10 shadow-2xl">
                                 <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-950">
-                                    {/* Video Player Placeholder */}
                                     <video
+                                        ref={videoRef}
                                         src={data.videoUrl}
                                         className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                                         loop
@@ -44,8 +54,16 @@ export default function VideoFeatureSection({ sectionId, alignment = 'left' }: V
                                                 <span className="flex items-center gap-1"><Star className="w-3 h-3" /> {data.stats.quality}</span>
                                             </div>
                                         </div>
-                                        <button className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-all duration-300">
-                                            <Play className="w-4 h-4 fill-current" />
+                                        <button
+                                            onClick={toggleMute}
+                                            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-indigo-600 transition-all duration-300"
+                                            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                                        >
+                                            {isMuted ? (
+                                                <VolumeX className="w-4 h-4" />
+                                            ) : (
+                                                <Volume2 className="w-4 h-4" />
+                                            )}
                                         </button>
                                     </div>
                                 </div>
